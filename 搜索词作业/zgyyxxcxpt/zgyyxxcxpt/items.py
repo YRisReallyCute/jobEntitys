@@ -43,6 +43,7 @@ class ZgyyxxcxptItem(scrapy.Item):
     wxya = scrapy.Field()
 
     id=scrapy.Field()
+    log=scrapy.Field()
     type=scrapy.Field()
 
 

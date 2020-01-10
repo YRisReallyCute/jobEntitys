@@ -8,10 +8,9 @@
 import scrapy
 
 
-class BaidubaikeItem(scrapy.Item):
+class SymptomItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-
     mc = scrapy.Field()
     mcjs = scrapy.Field()
     bm = scrapy.Field()
@@ -38,4 +37,39 @@ class BaidubaikeItem(scrapy.Item):
 
     id = scrapy.Field()
     log = scrapy.Field()
+    type=scrapy.Field()
     responseStatus = scrapy.Field()
+
+class PatentItem(scrapy.Item):
+    # define the fields for your item here like:
+    # name = scrapy.Field()
+    ym = scrapy.Field()
+    mcjs=scrapy.Field()
+    bm = scrapy.Field()
+    cf = scrapy.Field()
+    zffx = scrapy.Field()
+    gnzz = scrapy.Field()
+    zbff = scrapy.Field()
+    jxgg = scrapy.Field()
+    yfyl = scrapy.Field()
+    zlbz = scrapy.Field()
+    syjj = scrapy.Field()
+    zysx = scrapy.Field()
+    xdyj = scrapy.Field()
+    lcyy = scrapy.Field()
+    fg = scrapy.Field()
+    qtzj = scrapy.Field()
+    zc = scrapy.Field()
+    lj = scrapy.Field()
+    blfy = scrapy.Field()
+    yldl = scrapy.Field()
+    ywxhzy = scrapy.Field()
+    fl = scrapy.Field()
+    zxbz = scrapy.Field()
+    qt = scrapy.Field()
+    url = scrapy.Field()
+    auth = scrapy.Field()
+
+    id = scrapy.Field()
+    log = scrapy.Field()
+    type=scrapy.Field()

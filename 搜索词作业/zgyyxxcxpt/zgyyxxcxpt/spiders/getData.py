@@ -15,20 +15,31 @@ class GetdataSpider(scrapy.Spider):
     # department对应关系
     l1_cache = {}
 
-    def __init__(self,id=0,*args,**kwargs):
-        super(GetdataSpider,self).__init__(*args,**kwargs)
+    def __init__(self,id=0):
+        super(GetdataSpider,self).__init__()
         self.id=id
-        connection = pymysql.connect(user='root', password='root', db='yy_data1', port=3306, charset='utf8')
-        sql = "select * from data_job_word_search_task where id= %s" % self.id
+        connection = pymysql.connect(user='cupid', password='mysql@chinark', db='yy_data', port=3306, charset='utf8')
+        # connection = pymysql.connect(user='root', password='root', db='yy_data1', port=3306, charset='utf8')
+        # 根据id取出待执行任务的信息
+        sql = "select origin_url from data_job_word_search_task where id= %s" % self.id
+        sql1 = "select job_id from data_job_word_search_task where id= %s" % self.id
+
+        # 将当前状态设置为 待执行
         sql2 = "update data_job_word_search_task set status = 1 where id=%s" % id
+
+        # 读取配置文件，一个是title信息，一个是将英文内容转化为中文
         sql3 = "select * from data_conf_symptom_zy_baidubaike_title"
         sql4="select * from data_conf_english_to_chinese"
+
         cursor = connection.cursor()
         # 取出待爬取的一行task
         cursor.execute(sql)
         result = cursor.fetchone()
-        self.url=result[3]
-        self.type=result[2]
+        self.url=result[0]
+
+        cursor.execute(sql1)
+        result = cursor.fetchone()
+        self.type=result[0]
 
         # 将该行task的status设置为正在爬取
         cursor.execute(sql2)
@@ -45,7 +56,7 @@ class GetdataSpider(scrapy.Spider):
         results=cursor.fetchall()
         for row in results:
             self.english2chinese[row[1]]=row[2]
-        self.start_urls = ['http://www.dayi.org.cn/']
+        self.start_urls = ('http://www.dayi.org.cn/',)
         connection.close()
 
     def parse(self, response):

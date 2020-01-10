@@ -5,7 +5,7 @@ import re
 
 from scrapy import Request
 
-from baidubaike.items import BaidubaikeItem
+from baidubaike.items import  SymptomItem, PatentItem
 
 
 class GetdataSpider(scrapy.Spider):
@@ -17,6 +17,12 @@ class GetdataSpider(scrapy.Spider):
 
     # 需要存储两个位置的标题，这些标题需要存在多个列下
     multi_pos_l1 = {'预防调护': ['yfbj', 'hl']}
+
+    # 从job_id到读取配置文件表的转换
+    type2condb={
+        1:"data_conf_symptom_zy_baidubaike_title",
+        10:"data_conf_patent_zyybd_title2col"
+    }
 
     title2num={}
     # 未给出的标题cache
@@ -31,48 +37,68 @@ class GetdataSpider(scrapy.Spider):
     def __init__(self,id=0,*args,**kwargs):
         super(GetdataSpider,self).__init__(*args,**kwargs)
         self.id=int(id)
-        connection=pymysql.connect(user='root',password='root',db='yy_data1',port=3306,charset='utf8')
-        sql="select * from data_job_word_search_task where id= %s" %self.id
+        connection = pymysql.connect(user='cupid', password='mysql@chinark', db='yy_data', port=3306,charset='utf8')
+        # connection=pymysql.connect(user='root',password='root',db='yy_data1',port=3306,charset='utf8')
+        # 根据id取出待执行任务的信息
+        sql = "select word from data_job_word_search_task where id= %s" % self.id
+        sql1 = "select job_id from data_job_word_search_task where id= %s" % self.id
+
+        # 将当前状态设置为 待执行
         sql2="update data_job_word_search_task set status = 1 where id=%s" %self.id
-        sql3="select * from data_conf_symptom_zy_baidubaike_title"
+
         cursor=connection.cursor()
         # 取出待爬取的一行task
         cursor.execute(sql)
-        self.result=cursor.fetchone()
+        result = cursor.fetchone()
+        self.word = result[0]
+
+        cursor.execute(sql1)
+        result = cursor.fetchone()
+        self.type = result[0]
 
         #将该行task的status设置为正在爬取
         cursor.execute(sql2)
         connection.commit()
 
         #读取从title到num的转换，配置文件
-        cursor.execute(sql3)
+        cursor.execute("""select title,col from yy_data."""+self.type2condb[self.type])
         results=cursor.fetchall()
         for row in results:
-            self.title2num[row[1]] = row[2]
+            self.title2num[row[0]] = row[1]
         self.start_urls = ['https://baike.baidu.com']
         connection.close()
 
 
     def parse(self, response):
-        url='https://baike.baidu.com/item/%s'%self.result[1]
+        url='https://baike.baidu.com/item/%s'%self.word
         yield Request(url,callback=self.getInfo)
 
 
     def getInfo(self,response):
-        item = BaidubaikeItem()
+        cur_word=response.xpath('//dd[@class="lemmaWgt-lemmaTitle-title"]/h1/text()').extract()[0]
+        if(self.type==1):
+            item = SymptomItem()
+            # 将每一个item初始化为''
+            itemArry = [ 'mcjs', 'bm', 'ywmc', 'fk', 'dfrq', 'fbbw', 'xybm', 'bybj', 'lcbx', 'jbzd', 'bzsz',
+                        'fj', 'zjlf', 'yfbj', 'yslf', 'tnlf', 'wfwz', 'hl', 'yh', 'qt', 'url', 'auth']
+            # 名词
+            item['mc'] = cur_word
+        else:
+            item=PatentItem()
+            # 将每一个item初始化为''
+            itemArry = [ 'bm', 'mcjs','cf', 'zffx', 'gnzz', 'zbff', 'jxgg', 'yfyl', 'zlbz', 'syjj', 'zysx', 'xdyj',
+                        'lcyy', 'fg', 'qtzj', 'zc', 'lj', 'blfy', 'yldl', 'ywxhzy', 'fl', 'zxbz', 'qt']
+            # 药名
+            item['ym'] = cur_word
+
+        item['type']=self.type
         item['id']=self.id
 
-        # 将每一个item初始化为''
-        itemArry = ['mc', 'mcjs', 'bm', 'ywmc', 'fk', 'dfrq', 'fbbw', 'xybm', 'bybj', 'lcbx', 'jbzd', 'bzsz',
-                    'fj', 'zjlf', 'yfbj', 'yslf', 'tnlf', 'wfwz', 'hl', 'yh', 'qt', 'url', 'auth']
         for i in range(len(itemArry)):
             item[itemArry[i]] = ''
 
-            # URL的值
-            item['url'] = response.request.url
-
-            # 名词
-            item['mc'] = response.xpath('//dd[@class="lemmaWgt-lemmaTitle-title"]/h1/text()').extract()[0]
+        # URL的值
+        item['url'] = response.request.url
 
         # 权威认证
         authority = response.xpath('//*[@class="page-background"]').extract()
@@ -82,33 +108,23 @@ class GetdataSpider(scrapy.Spider):
             item['auth'] = 0
 
         # 名词解释
-        mcjs_text = ''
-        mcjs_para = response.xpath('//div[@class="lemma-summary"]/div[@class="para"]/text()').extract()
-        for each_t1 in mcjs_para:
-            mcjs_text = mcjs_text + each_t1 + '<br/>'
+        mcjs_para = response.xpath('//div[@class="lemma-summary"]/div[@class="para"]//text()').extract()
+        mcjs_text=self.list2string(mcjs_para)
         item['mcjs'] = mcjs_text
 
         # ------------------------------------基本信息部分----------------------------------------
 
-        # 所有能爬取到的一级标题及其对应内容
+        # 所有能爬取到的一级标题及其对应内容,dt对应标题，dd对应内容
         level1 = []
         level1_text = []
-
-        base_div_arry = response.xpath('.//div')
-        for each_base_div in base_div_arry:
-            # 根据class属性判断是否是基本信息部分
-            kk = each_base_div.css('::attr(class)').extract()
-            while type(kk) is list and len(kk) > 0:
-                kk = kk[0]
-            if len(kk) == 0: continue
-
-            if re.search(r'.*[b B]ase.*[i I]nfo.*', kk):
-                for each_dl in each_base_div.xpath('.//dl'):
-                    dt = each_dl.xpath('./dt/text()').extract()
-                    dd = each_dl.xpath('./dd/text()').extract()
-                    for j in range(len(dt)):
-                        level1.append(self.replace_special(dt[j]))
-                        level1_text.append(self.replace_special(dd[j]))
+        base_arry=response.xpath("//div[re:match(@class,'.*[b B]as.*[i I]nfo.*')]")
+        if(base_arry.extract()!=""):
+            for each_dl in base_arry.xpath('.//dl'):
+                dt = each_dl.xpath('./dt/text()').extract()
+                dd = each_dl.xpath('./dd/text()').extract()
+                for j in range(len(dt)):
+                    level1.append(self.replace_special(dt[j]))
+                    level1_text.append(self.replace_special(dd[j]))
 
         for i in range(len(level1)):
             tmp_ind = self.find_level(level1[i])
@@ -117,12 +133,12 @@ class GetdataSpider(scrapy.Spider):
                 item[tmp_ind] += tmp_l + level1_text[i]
             else:
                 if (level1[i] not in self.l1_name.keys()):
-                    self.l1_name[level1[i]] = item['mc']
-                self.l1_cache.append(item['mc'] + '\t' + level1[i])
+                    self.l1_name[level1[i]] = cur_word
+                self.l1_cache.append(cur_word + '\t' + level1[i])
                 self.text_cache.append(level1_text[i])
+                item['qt']+='<h1>' + level1[i] + '</h1>' + '<br/>'+level1_text[i]
 
         # -------------------------------------正文部分-------------------------------------------
-
         tmp_l1 = ''  # 存放一级标题
         tmp_l1_text = ''  # 存放一级标题及其下内容
         tmp_l3 = ''  # 存放二级标题
@@ -135,10 +151,13 @@ class GetdataSpider(scrapy.Spider):
             tmp_l1 = ""
         else:
             tmp_l1 = self.replace_special(tmp_l1)
-        tmp_l1_text = tmp_l1_text + '<h1>' + tmp_l1 + '</h1>' + '<br/>'
-        level1.append(tmp_l1)
+            tmp_l1_text = tmp_l1_text + '<h1>' + tmp_l1 + '</h1>' + '<br/>'
+            level1.append(tmp_l1)
 
         divArry = response.xpath('//div[@class="para-title level-2"]/following-sibling::div')  # 选出同级的所有div
+
+        if(len(divArry)==0):
+            divArry=response.xpath('//div[@class="lemma-summary"]/following-sibling::div')
 
         # 逐个div进行提取
         for each_div in divArry:
@@ -168,9 +187,10 @@ class GetdataSpider(scrapy.Spider):
                     if number == -1:
                         # 没找到，写进cache里
                         if (tmp_l1 not in self.l1_name.keys()):
-                            self.l1_name[tmp_l1] = item['mc']
-                        self.l1_cache.append(item['mc'] + '\t' + tmp_l1)
+                            self.l1_name[tmp_l1] = cur_word
+                        self.l1_cache.append(cur_word+ '\t' + tmp_l1)
                         self.text_cache.append(tmp_l1_text)
+                        item['qt'] +=tmp_l1_text
                     else:
                         # 找到了，写进对应的item里
                         item[number] += tmp_l1_text
@@ -195,7 +215,7 @@ class GetdataSpider(scrapy.Spider):
                 tmp_l3 = level2
                 # 写进cache里
                 if (level2 not in self.l2_name.keys()):
-                    self.l2_name[level2] = item['mc']
+                    self.l2_name[level2] = cur_word
                 tmp_l3_text = '<h2>' + tmp_l3 + '</h2>' + '<br/>'
                 if self.is_special(tmp_l1, tmp_l3) != '':
                     tmp_l3_num = 1
@@ -224,16 +244,16 @@ class GetdataSpider(scrapy.Spider):
                         tmp_l3 = b_text[0]
                         # 写进cache里
                         if (tmp_l3 not in self.l2_name.keys()):
-                            self.l2_name[tmp_l3] = item['mc']
+                            self.l2_name[tmp_l3] = cur_word
                         tmp_l3_text = '<h2>' + tmp_l3 + '</h2>' + '<br/>'
                         if self.is_special(tmp_l1, tmp_l3) != '':
                             tmp_l3_num = 1
                             tmp_col = self.is_special(tmp_l1, tmp_l3)
                     else:  # 一段话
                         if tmp_l3 != '':
-                            tmp_l3_text += para_text[0]
+                            tmp_l3_text += para_text[0]+ '<br/>'
                         else:
-                            tmp_l1_text += para_text[0]
+                            tmp_l1_text += para_text[0]+ '<br/>'
                 else:  # 很多段话
                     for each_para_text in para_text:
                         tmp_str += self.replace_special(each_para_text)
@@ -258,7 +278,8 @@ class GetdataSpider(scrapy.Spider):
             if number != "":
                 if number == -1:
                     # 没找到，写进cache里
-                    self.l1_cache.append(item['mc'] + '\t' + tmp_l1)
+                    self.l1_cache.append(cur_word+ '\t' + tmp_l1)
+                    item['qt']+=tmp_l1_text
                 else:
                     # 找到了，写进对应的item里
                     item[number] += tmp_l1_text
@@ -350,3 +371,9 @@ class GetdataSpider(scrapy.Spider):
         nstr = self.replace_special(str)
         nstr = nstr.replace('一、', '').replace('二、', '').replace('三、', '').replace('四、', '').replace('五、', '')
         return nstr
+
+    def list2string(self,list):
+        string=""
+        for each in list:
+            string+=each
+        return string
