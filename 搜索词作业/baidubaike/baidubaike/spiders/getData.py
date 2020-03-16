@@ -34,9 +34,10 @@ class GetdataSpider(scrapy.Spider):
     l1_name = {}
     l2_name = {}
 
-    def __init__(self,id=0,*args,**kwargs):
+    def __init__(self,id=0,refreshURL="",*args,**kwargs):
         super(GetdataSpider,self).__init__(*args,**kwargs)
         self.id=int(id)
+        self.refreshURL=refreshURL
         connection = pymysql.connect(user='cupid', password='mysql@chinark', db='yy_data', port=3306,charset='utf8')
         # connection=pymysql.connect(user='root',password='root',db='yy_data1',port=3306,charset='utf8')
         # 根据id取出待执行任务的信息
@@ -70,7 +71,8 @@ class GetdataSpider(scrapy.Spider):
 
 
     def parse(self, response):
-        url='https://baike.baidu.com/item/%s'%self.word
+        # url='https://baike.baidu.com/item/%s'%self.word
+        url=self.refreshURL
         yield Request(url,callback=self.getInfo)
 
 

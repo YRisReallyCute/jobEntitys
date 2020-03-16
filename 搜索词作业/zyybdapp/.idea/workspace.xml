@@ -2,24 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1d50744-3d06-4068-8f17-da5434f3cb86" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../yaobiaow/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../yaobiaow/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../yaobiaow/.idea/webServers.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../yaobiaow/yaobiaow/start.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zyybdapp/start.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../refresh_all/zgyyxxcxpt/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../baidubaike/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../baidubaike/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../baidubaike/baidubaike/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/../baidubaike/baidubaike/items.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../baidubaike/baidubaike/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/../baidubaike/baidubaike/pipelines.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../baidubaike/baidubaike/spiders/getData.py" beforeDir="false" afterPath="$PROJECT_DIR$/../baidubaike/baidubaike/spiders/getData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../baidubaike/baidubaike/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/../baidubaike/baidubaike/start.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zgyyxxcxpt/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../zgyyxxcxpt/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zgyyxxcxpt/zgyyxxcxpt/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/../zgyyxxcxpt/zgyyxxcxpt/items.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zgyyxxcxpt/zgyyxxcxpt/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/../zgyyxxcxpt/zgyyxxcxpt/pipelines.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zgyyxxcxpt/zgyyxxcxpt/spiders/getData.py" beforeDir="false" afterPath="$PROJECT_DIR$/../zgyyxxcxpt/zgyyxxcxpt/spiders/getData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zgyyxxcxpt/zgyyxxcxpt/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/../zgyyxxcxpt/zgyyxxcxpt/start.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yaobiaow/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../yaobiaow/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/zyybdapp/pipelines.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+            <state relative-caret-position="425">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
               <folding>
                 <element signature="e#193#208#0" expanded="true" />
               </folding>
@@ -94,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zyybdapp/spiders/getData.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1925">
-              <caret line="77" column="25" selection-start-line="77" selection-start-column="25" selection-end-line="77" selection-end-column="25" />
+            <state relative-caret-position="-125">
+              <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
               <folding>
                 <element signature="e#24#33#0" expanded="true" />
               </folding>
@@ -138,8 +124,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="1926" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-961" />
+    <option name="y" value="284" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -149,7 +136,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -172,6 +158,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -181,7 +168,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../爬取样例数据/中医药宝典APP/爬取中成药数据/getData" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../爬取样例数据/中国医药信息查询平台/exampleWE" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -250,17 +237,18 @@
       <workItem from="1578039783839" duration="58000" />
       <workItem from="1578052539825" duration="26000" />
       <workItem from="1578055337869" duration="638000" />
+      <workItem from="1582445185815" duration="2967000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25927000" />
+    <option name="totallyTimeSpent" value="28894000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-961" y="284" width="1936" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1098081" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.0804904" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -280,7 +268,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Remote Host" order="3" visible="true" weight="0.15138593" />
+      <window_info anchor="right" id="Remote Host" order="3" weight="0.3107221" />
       <window_info anchor="right" id="SciView" order="4" />
       <window_info anchor="right" id="Database" order="5" />
     </layout>
@@ -317,8 +305,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/zyybdapp/pipelines.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+        <state relative-caret-position="425">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
           <folding>
             <element signature="e#193#208#0" expanded="true" />
           </folding>
@@ -363,20 +351,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zyybdapp/spiders/getData.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1925">
-          <caret line="77" column="25" selection-start-line="77" selection-start-column="25" selection-end-line="77" selection-end-column="25" />
-          <folding>
-            <element signature="e#24#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zyybdapp/items.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="775">
           <caret line="31" column="25" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zyybdapp/spiders/getData.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-125">
+          <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+          <folding>
+            <element signature="e#24#33#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

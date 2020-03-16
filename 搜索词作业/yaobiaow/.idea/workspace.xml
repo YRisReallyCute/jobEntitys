@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffcd929b-d1c0-43a2-a021-8ab21c40dc77" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yaobiaow/start.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../zyybdapp/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../zyybdapp/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../zyybdapp/.idea/webServers.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../zyybdapp/zyybdapp/start.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../baidubaike/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../baidubaike/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../baidubaike/baidubaike/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/../baidubaike/baidubaike/items.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../baidubaike/baidubaike/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/../baidubaike/baidubaike/pipelines.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../baidubaike/baidubaike/spiders/getData.py" beforeDir="false" afterPath="$PROJECT_DIR$/../baidubaike/baidubaike/spiders/getData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../baidubaike/baidubaike/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/../baidubaike/baidubaike/start.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zgyyxxcxpt/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../zgyyxxcxpt/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zgyyxxcxpt/zgyyxxcxpt/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/../zgyyxxcxpt/zgyyxxcxpt/items.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zgyyxxcxpt/zgyyxxcxpt/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/../zgyyxxcxpt/zgyyxxcxpt/pipelines.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zgyyxxcxpt/zgyyxxcxpt/spiders/getData.py" beforeDir="false" afterPath="$PROJECT_DIR$/../zgyyxxcxpt/zgyyxxcxpt/spiders/getData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zgyyxxcxpt/zgyyxxcxpt/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/../zgyyxxcxpt/zgyyxxcxpt/start.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +27,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yaobiaow/spiders/getData.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2225">
+            <state relative-caret-position="2125">
               <caret line="89" column="41" selection-start-line="89" selection-start-column="41" selection-end-line="89" selection-end-column="41" />
               <folding>
                 <element signature="e#24#38#0" expanded="true" />
@@ -140,7 +123,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -163,6 +145,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -237,17 +220,17 @@
       <workItem from="1578039652031" duration="131000" />
       <workItem from="1578052451574" duration="79000" />
       <workItem from="1578055343618" duration="614000" />
+      <workItem from="1582445184674" duration="65000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15526000" />
+    <option name="totallyTimeSpent" value="15591000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="1926" y="0" width="1936" height="1056" extended-state="7" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.108742006" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1098081" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -311,7 +294,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/yaobiaow/spiders/getData.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2225">
+        <state relative-caret-position="2125">
           <caret line="89" column="41" selection-start-line="89" selection-start-column="41" selection-end-line="89" selection-end-column="41" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
